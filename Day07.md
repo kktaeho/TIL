@@ -88,3 +88,32 @@ class Solution:
             nCount += 1
         return nCount
 ```
+
+5. leet code 383
+```python
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        if ransomNote in magazine:
+            return True
+        elif ransomNote != magazine:
+            return False
+
+```
+
+- 정답 풀이
+```python
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        ransomNoteList = list(ransomNote)
+        magazineList = list(magazine)
+        Answer = True
+        for char in ransomNoteList:
+            if char not in magazineList: #글자가 없으면
+                Answer = False
+                break
+            else: #글자가 있으면
+                CharIdx = magazineList.index(char)
+                magazineList.pop(CharIdx)
+                #magazineList.pop(magazineList.index(char)) # 위 두줄을 한줄로 가능
+        return Answer
+```
