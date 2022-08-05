@@ -46,7 +46,25 @@ class Solution:
         #print(Pairs)
 
 - two pointer 사용
-
+# two pointer
+        sort_num = sorted(nums)
+        i, j = 0, len(nums)-1
+        
+        while i < j :
+            sort_num[i] # 얘를 변수처리해야 제대로 작동하는듯
+            sort_num[j]
+            sum_num = sort_num[i] + sort_num[j] - target
+            if sum_num > 0:
+                j -= 1
+            elif sum_num < 0:
+                i += 1
+            else : # sum_num = 0
+                break
+        if sort_num[i] != sort_num[j]:
+            return nums.index(sort_num[i]), nums.index(sort_num[j])
+        else:
+            return [ i for i, num in enumerate(nums) if num == sort_num[i] ]
+        
 - 정답
 # two pointer
 class Solution:
@@ -68,4 +86,44 @@ class Solution:
             return nums.index(Left), nums.index(Right)
         else:
             return [ i for i, num in enumerate(nums) if num == Left ]
+```
+
+## 15 3sum
+
+```python
+- 풀이
+i, j, k = 0, len(nums)-2, len(nums)-1
+        while i<k :
+            left = nums[i]
+            centers = nums[j]
+            right = nums[k]
+            ans = left + centers + right
+            if ans == 0:
+                return ans
+            elif ans > 0:
+                j-=1
+            else :
+                i +=1
+                
+                return ans
+```
+- 답
+```python
+# Three num / Two-pointer를 활용한 해법
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        Answer = set()
+        nums.sort()
+        for i in range(len(nums)-2):
+            nums[i] == nums[0]
+            j, k = i + 1, len(nums)-1
+            while j < k:
+                if nums[i] + nums[j] + nums[k] == 0:
+                    Answer.add( tuple([nums[i], nums[j], nums[k]] ))
+                    j, k = j +1, k-1
+                elif nums[i] + nums[j] + nums[k] > 0:
+                    k -= 1
+                else:
+                    j += 1
+        return list(Answer)
 ```
